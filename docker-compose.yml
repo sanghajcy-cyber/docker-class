@@ -1,0 +1,24 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+    - 8000:8000
+    restart: unless-stopped
+    networks:
+    - shared-net
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.fe
+    container_name: frontend
+    ports:
+    - 8080:80
+    restart: unless-stopped
+    networks:
+    - shared-net
+networks:
+  shared-net:
+    external: true
